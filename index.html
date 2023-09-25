@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: pink;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .main {
+            background-color: white;
+            width: 500px;
+            height: 700px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        textarea {
+            margin-top: 50px;
+            width: 350px;
+            height: 200px;
+        }
+    </style>
+
+    <script>
+        function add() {
+            var name = document.createElement("div");
+            name.innerHTML = document.getElementById("dd").value;
+            name.onclick = remove;
+            document.getElementById("list").appendChild(name);
+            save();
+        }
+
+        function remove() {
+            document.getElementById("list").removeChild(this);
+            save();
+        }
+
+        function save() {
+            localStorage.list = document.getElementById("list").innerHTML;
+        }
+
+        function load() {
+            document.getElementById("list").innerHTML = localStorage.list;
+            for(var i=0; i < list.children.length; i++){
+                list.children[i].onclick = remove;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>My Page에 오신 것을 환영합니다!</h1>
+    <h4>방명록을 작성해주세요</h4>
+    <div class="main">
+        <textarea id="dd"></textarea>
+        <button onclick="add();">입력</button>
+        <div id="list"></div>
+    </div>
+    <script>
+        if(localStorage.list) {
+            load();
+        }
+    </script>
+</body>
+</html>
